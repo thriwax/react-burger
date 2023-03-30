@@ -1,0 +1,42 @@
+.header {
+    background-color: #1c1c21;
+    width: 100%;
+}
+
+.navbar {
+    padding: 16px 0;
+    margin: 0 auto;
+    max-width: 1280px;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    margin: auto;
+}
+
+.buttons {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+    column-gap: 8px;
+    flex: 1;
+    justify-content: flex-start;
+}
+
+.profile {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    column-gap: 8px;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    column-gap: 8px;
+}
