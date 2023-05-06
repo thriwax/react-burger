@@ -8,10 +8,6 @@ import BurgerConstructor from "../BurgerConstructor/BurgerConstructor";
 
 function App() {
 
-  const [isLoading, setLoading] = React.useState(false)
-
-  const [hasError, setError] = React.useState('')
-
   const [ingredients, setIngredients] = useState([])
 
   const [buns, setBuns] = useState({
@@ -32,12 +28,12 @@ function App() {
   useEffect(() => {
   }, [ingredients])
 
+
   return (
-    isLoading ? <h1>Загрузка</h1> : 
     <div className={app.app}>
       <AppHeader />
       <main className={app.mainContainer}>
-        <BurgerIngredients className={app.burgerIngredients} setIngredients={setIngredients} ingredients={ingredients} setBuns={setBuns} data={data}/>
+        <BurgerIngredients className={app.burgerIngredients} setIngredients={setIngredients} ingredients={ingredients} setBuns={setBuns}/>
         <BurgerConstructor setIngredients={setIngredients} ingredients={ingredients} buns={buns}/>
       </main>
     </div>

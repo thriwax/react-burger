@@ -3,6 +3,8 @@ import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-c
 import ingredienCard from './IngredientCard.module.css';
 import Modal from '../Modal/Modal';
 import propTypes from 'prop-types';
+import { createPortal } from 'react-dom';
+import ModalOverlay from '../ModalOverlay/ModalOverlay';
 
 const IngredientCard = ({item, setIngredients, ingredients}) => {
 
@@ -23,7 +25,7 @@ const IngredientCard = ({item, setIngredients, ingredients}) => {
 
     return (
         <div>
-            {open && <Modal item={item} setOpen={setOpen}/>}
+            {open && createPortal(<ModalOverlay item={item} setOpen={setOpen} body='ingredients'/>, document.body)}
             <div className={ingredienCard.card} onClick={() => add()}>
             {ingredients !== 'burgers' && <Counter count={ingredients.filter((i) => i._id === item._id).length} size="default" extraClass="m-1" />}
             <img src={item.image} alt='x'/>

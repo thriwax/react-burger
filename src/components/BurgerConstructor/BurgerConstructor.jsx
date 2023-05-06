@@ -1,24 +1,21 @@
 import React from 'react';
 import {ConstructorElement, DragIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import Order from '../Order/Order';
+import OrderDetails from '../Order/OrderDetails';
 import PriceIcon from '../UI/PriceIcon/PriceIcon';
 import burgerConstructor from './BurgerConstructor.module.css';
 import propTypes from 'prop-types';
+import { createPortal } from 'react-dom';
+import ModalOverlay from '../ModalOverlay/ModalOverlay';
 
 const BurgerConstructor = ({ingredients, buns}) => {
     
-
     const date = new Date();
 
     const [open, setOpen] = React.useState(false)
 
-    const openOrder = () => {
-        setOpen(true)
-    }
-
     return (
         <div>
-            {open && <Order setOpen={setOpen}/>}
+            {open && createPortal(<ModalOverlay setOpen={setOpen} body='order'/>, document.body)}
             <div className={burgerConstructor.container}>
 
             <main className={burgerConstructor.listContainer}>
@@ -40,10 +37,6 @@ const BurgerConstructor = ({ingredients, buns}) => {
                     handleClose={(() => console.log('ff'))}
                 />
                 </div>)}
-                {/* <ConstructorElement
-                    text="Краторная булка N-200i (верх)"
-                    price={50}
-                /> */}
                 <ConstructorElement
                     type="bottom"
                     isLocked={true}
@@ -57,7 +50,7 @@ const BurgerConstructor = ({ingredients, buns}) => {
             <div className={burgerConstructor.price}>
                 <p className="text text_type_digits-medium">610</p>
                 <PriceIcon />
-                <Button htmlType="button" type="primary" size="large" onClick={() => openOrder()}>Оформить Заказ</Button>
+                <Button htmlType="button" type="primary" size="large" onClick={() => setOpen(true)}>Оформить Заказ</Button>
             </div>
         </div>
         </div>
