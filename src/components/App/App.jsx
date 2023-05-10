@@ -8,6 +8,25 @@ import BurgerConstructor from "../BurgerConstructor/BurgerConstructor";
 
 function App() {
 
+
+  const [initialIngreidents, setInitialIngedients] = React.useState([])
+
+    const [isLoading, setLoading] = React.useState(false)
+
+    const [hasError, setError] = React.useState('')
+
+    useEffect(() => {
+        const res =  fetch('https://norma.nomoreparties.space/api/ingredients').then(res => { 
+          setLoading(true)
+          return res.ok ? res.json() : Promise.reject()})
+          .then(r => {
+            
+            setInitialIngedients(r.data)
+          })
+            console.log(res)
+
+    }, [])
+
   const [ingredients, setIngredients] = useState([])
 
   const [buns, setBuns] = useState({
@@ -32,12 +51,13 @@ function App() {
   return (
     <div className={app.app}>
       <AppHeader />
-      <main className={app.mainContainer}>
-        <BurgerIngredients className={app.burgerIngredients} setIngredients={setIngredients} ingredients={ingredients} setBuns={setBuns}/>
+      {isLoading ? <main className={app.mainContainer}>
+        <BurgerIngredients className={app.burgerIngredients} setIngredients={setIngredients} ingredients={ingredients} setBuns={setBuns} initialIngreidents={initialIngreidents}/>
         <BurgerConstructor setIngredients={setIngredients} ingredients={ingredients} buns={buns}/>
-      </main>
+      </main> : <div>Загрузка</div>}
     </div>
   );
 }
 
 export default App;
+

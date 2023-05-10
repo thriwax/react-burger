@@ -5,34 +5,17 @@ import Category from "../Category/Category";
 import { Link } from 'react-scroll'
 import propTypes from 'prop-types';
 
-const BurgerIngredients = ({ setIngredients, ingredients, setBuns }) => {
+const BurgerIngredients = ({ setIngredients, ingredients, setBuns, initialIngreidents}) => {
 
-    const [initialIngedients, setInitialIngedients] = React.useState([])
-
-    const [isLoading, setLoading] = React.useState(false)
-
-    const [hasError, setError] = React.useState('')
-
-    useEffect(() => {
-        fetch('https://norma.nomoreparties.space/api/ingredients')
-            .then(res => res.json()
-                .then(r => {
-                    setLoading(true)
-                    setInitialIngedients(r.data);
-                }))
-                .catch((err) => setError(err))
-
-    })
-
-    const buns = initialIngedients.filter((item) => item.type === 'bun')
-    const sauces = initialIngedients.filter((item) => item.type === 'sauce')
-    const mains = initialIngedients.filter((item) => item.type === 'main')
+    const buns = initialIngreidents.filter((item) => item.type === 'bun')
+    const sauces = initialIngreidents.filter((item) => item.type === 'sauce')
+    const mains = initialIngreidents.filter((item) => item.type === 'main')
 
     const [current, setCurrent] = React.useState()
 
 
 
-    return isLoading ? (<div className={burgerIngredients.container}>
+    return (<div className={burgerIngredients.container}>
 
 
         <p className="text text_type_main-large mt-10 mb-5">Соберите бургер</p>
@@ -58,7 +41,7 @@ const BurgerIngredients = ({ setIngredients, ingredients, setBuns }) => {
         </div>
 
 
-    </div>) : <div>Загрузка</div>
+    </div>)
 }
 
 BurgerIngredients.propTypes = {
@@ -78,7 +61,7 @@ BurgerIngredients.propTypes = {
         __v: propTypes.number.isRequired,
     }).isRequired).isRequired,
     setBuns: propTypes.func,
-    data: propTypes.array
+    initialIngreidents: propTypes.array.isRequired
 
 }
 
