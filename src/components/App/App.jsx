@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import React, { useEffect } from "react";
 import {useState} from 'react';
 import app from "./App.module.css";
@@ -46,3 +47,56 @@ function App() {
 }
 
 export default App;
+=======
+import {useEffect, useState} from "react";
+import app from "./App.module.css";
+import AppHeader from "../AppHeader/AppHeader.jsx";
+import BurgerIngredients from "../BurgerIngredients/BurgerIngredients";
+import BurgerConstructor from "../BurgerConstructor/BurgerConstructor";
+import {NORMA_API} from "../../utils/burger-api";
+function App() {
+    const [ingredients, setIngredients] = useState([]);
+    const [buns, setBuns] = useState({});
+    const [basket, setBasket] = useState([]);
+
+    const [isLoading, setLoading] = useState(false);
+
+    const [hasError, setError] = useState('');
+    useEffect(() => {
+        fetch(`${NORMA_API}/ingredients`)
+            .then((res) => {
+                if (res.ok) {
+                    res.json().then((r) => {
+                        setIngredients(r.data);
+                        setBuns(r.data.find((item) => item.type === "bun"))
+                    }).then(() => setLoading(true));
+                } else {
+                    res.json().catch((err) => {
+                        setError(err.message);
+                    }).then(() => setLoading(true));
+                }
+            });
+    }, []);
+    return (
+        <div className={app.app}>
+            <AppHeader/>
+            {isLoading && (hasError || <main className={app.mainContainer}>
+                <BurgerIngredients
+                    className={app.burgerIngredients}
+                    setBasket={setBasket}
+                    basket={basket}
+                    ingredients={ingredients}
+                    setBuns={setBuns}
+                />
+                <BurgerConstructor
+                    setBasket={setBasket}
+                    basket={basket}
+                    buns={buns}
+                />
+            </main>)}
+        </div>
+    );
+}
+
+export default App;
+>>>>>>> Stashed changes

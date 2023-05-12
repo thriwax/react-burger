@@ -3,13 +3,18 @@ import stylesOrder from './Order.module.css';
 
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import AcceptIcon from '../UI/AcceptIcon/AcceptIcon'
+import { TOrderDetails } from '../../utils/types';
 
+<<<<<<< Updated upstream:src/components/Order/Order.jsx
 const Order = (props) => {
+=======
+const OrderDetails = ({setOpen}) => {
+>>>>>>> Stashed changes:src/components/Order/OrderDetails.jsx
   return (
     <div className={stylesOrder.wrapper}>
         <div className={stylesOrder.main}>
             <div className={stylesOrder.icon}>
-              <CloseIcon type="primary" onClick={() => props.setOpen(false)}/>
+              <CloseIcon type="primary" onClick={() => setOpen(false)}/>
             </div>
             <div className={stylesOrder.flex}>
               <p className="text text_type_digits-large" style={{textShadow: '0px 0px 16px rgba(51, 51, 255, 0.25), 0px 0px 8px rgba(51, 51, 255, 0.25), 0px 4px 32px rgba(51, 51, 255, 0.5)', paddingTop: '40px'}}>034536</p>
@@ -22,5 +27,10 @@ const Order = (props) => {
     </div>
   )
 }
+<<<<<<< Updated upstream:src/components/Order/Order.jsx
 
 export default Order
+=======
+OrderDetails.propTypes = TOrderDetails
+export default OrderDetails
+>>>>>>> Stashed changes:src/components/Order/OrderDetails.jsx
