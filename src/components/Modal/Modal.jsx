@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import React from "react";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import styleModal from "./Modal.module.css";
@@ -58,3 +59,38 @@ const Modal = (props) => {
 };
 
 export default Modal;
+=======
+import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import styleModal from "./Modal.module.css";
+import IngredientDetails from "../IngredientDetails/IngredientDetails";
+import Order from "../Order/OrderDetails";
+import ModalOverlay from "../ModalOverlay/ModalOverlay";
+import { TModal } from "../../utils/types";
+
+const Modal = ({ body, setOpen, item }) => {
+  document.addEventListener("keydown", ({ code }) => {
+    code === "Escape" && setOpen(false);
+  });
+  return (
+    <ModalOverlay setOpen={setOpen}>
+      <>
+        <div className={styleModal.title}>
+          {body === "ingredients" && (
+            <p className="text text_type_main-large">Детали ингридиента</p>
+          )}
+          <button onClick={() => setOpen(false)} className={styleModal.button}>
+            <CloseIcon type="primary" />
+          </button>
+        </div>
+        {body === "ingredients" ? (
+          <IngredientDetails item={item} />
+        ) : (
+          <Order setOpen={setOpen} />
+        )}
+      </>
+    </ModalOverlay>
+  );
+};
+Modal.propTypes = TModal;
+export default Modal;
+>>>>>>> Stashed changes

@@ -1,7 +1,6 @@
 .container {
     width: 600px;
     padding-top: 100px;
-
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -14,10 +13,6 @@
     gap: 10px;
     align-items: flex-end;
     
-}
-
-.main>div {
-    width: 100%;
 }
 
 .price {
@@ -37,17 +32,20 @@
 
 .listContainer {
     composes: custom-scroll from '@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css';
-
     display: flex;
-
+    justify-content: space-between;
     flex-direction: column;
-
     margin: 0;
     padding: 0;
-
     gap: 40px;
-
-
-    height: calc(60vh);
+    max-height: calc(30vh);
     overflow-y: auto;
+    width: 100%
+}
+.main> div{
+    margin-right: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
 }
